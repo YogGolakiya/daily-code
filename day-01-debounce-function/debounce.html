@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Debounce Demo</title>
+
+
+  <script src="./debounce.js" defer></script>
+</head>
+
+<body style="padding:40px;font-family:Arial">
+
+  <h2>Debounce Search Demo</h2>
+
+  <input
+    id="search"
+    type="text"
+    placeholder="Type to search..."
+    style="padding:10px;font-size:16px;width:280px;"
+  />
+
+  <p id="result">Waiting for input...</p>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("search");
+      const result = document.getElementById("result");
+
+      const debouncedSearch = debounce((query) => {
+        result.textContent = `Searching: ${query}`;
+      }, 500);
+
+      searchInput.addEventListener("input", (e) => {
+        debouncedSearch(e.target.value);
+      });
+    });
+  </script>
+
+</body>
+</html>
