@@ -64,5 +64,5 @@ Building scalable, optimized, production-ready applications.
 
 ---
 
-## 📂 Repository Structure
+
 
