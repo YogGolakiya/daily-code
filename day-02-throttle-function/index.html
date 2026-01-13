@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Throttle Demo</title>
+  <style>
+    body {
+      height: 2000px;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .box {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #111;
+      color: #00eaff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    Scroll count: <span id="count">0</span>
+  </div>
+
+  <script>
+    function throttle(fn, limit) {
+      let inThrottle = false;
+
+      return function (...args) {
+        if (!inThrottle) {
+          fn.apply(this, args);
+          inThrottle = true;
+
+          setTimeout(() => {
+            inThrottle = false;
+          }, limit);
+        }
+      };
+    }
+
+    let count = 0;
+    const countElement = document.getElementById("count");
+
+    function handleScroll() {
+      count++;
+      countElement.textContent = count;
+      console.log("Throttle triggered:", count);
+    }
+
+    window.addEventListener("scroll", throttle(handleScroll, 1000));
+  </script>
+
+</body>
+</html>
