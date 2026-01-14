@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 03 - Event Delegation</title>
+
+  <style>
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 320px;
+    }
+
+    li {
+      background: #111827;
+      margin-bottom: 12px;
+      padding: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    li:hover {
+      background: #1f2937;
+    }
+
+    .output {
+      margin-top: 20px;
+      color: #38bdf8;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Day 03 · Event Delegation</h2>
+
+  <ul id="itemList">
+    <li>JavaScript</li>
+    <li>React</li>
+    <li>Node.js</li>
+    <li>Frontend</li>
+  </ul>
+
+  <div class="output" id="output">
+    Click any item
+  </div>
+
+  <script>
+    const list = document.getElementById("itemList");
+    const output = document.getElementById("output");
+
+    list.addEventListener("click", function (event) {
+      if (event.target.tagName === "LI") {
+        output.textContent = `Clicked: ${event.target.textContent}`;
+        console.log("Clicked:", event.target.textContent);
+      }
+    });
+  </script>
+
+</body>
+</html>
