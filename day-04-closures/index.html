@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Day 04 - Closures</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    button {
+      background: #111827;
+      color: #38bdf8;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #1f2937;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #22d3ee;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Day 04 · Closures</h2>
+
+  <button id="btn">Increment</button>
+
+  <div class="output" id="output">
+    Click the button
+  </div>
+
+  <script>
+    function createCounter() {
+      let count = 0;
+
+      return function () {
+        count++;
+        return count;
+      };
+    }
+
+    const counter = createCounter();
+    const output = document.getElementById("output");
+
+    document.getElementById("btn").addEventListener("click", () => {
+      output.textContent = "Count: " + counter();
+      console.log("Current count:", counter());
+    });
+  </script>
+
+</body>
+</html>
