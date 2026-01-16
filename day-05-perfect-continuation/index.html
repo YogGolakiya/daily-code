@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 05 - call apply bind</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    button {
+      background: #111827;
+      color: #38bdf8;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #1f2937;
+    }
+
+    .output {
+      margin-top: 20px;
+      color: #22d3ee;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Day 05 · call / apply / bind</h2>
+
+  <button onclick="useCall()">call()</button>
+  <button onclick="useApply()">apply()</button>
+  <button onclick="useBind()">bind()</button>
+  <button onclick="executeBind()">Execute bind()</button>
+
+
+  <div class="output" id="output">
+    Click any button
+  </div>
+
+ <script>
+  const user = { name: "Code" };
+  const output = document.getElementById("output");
+
+  function greet(city, country) {
+    return `${this.name} from ${city}, ${country}`;
+  }
+
+  let boundFn;
+
+  function useCall() {
+    output.textContent = greet.call(user, "Mumbai", "India");
+  }
+
+  function useApply() {
+    output.textContent = greet.apply(user, ["Mumbai", "India"]);
+  }
+
+  function useBind() {
+    boundFn = greet.bind(user, "Mumbai", "India");
+    output.textContent = "Bind created. Click again to execute.";
+  }
+
+  function executeBind() {
+    if (boundFn) {
+      output.textContent = boundFn();
+    } else {
+      output.textContent = "Click bind() first";
+    }
+  }
+</script>
+
+</body>
+</html>
